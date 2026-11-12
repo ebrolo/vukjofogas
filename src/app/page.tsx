@@ -170,10 +170,10 @@ export default function HomePage() {
         {/* Hero Headline & Quick Pitch */}
         <section className="space-y-1">
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
-            Kollégiumi Apróhirdetések
+            VUK Kollégiumi Apróhirdetések
           </h1>
           <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl">
-            Feleslegessé vált bútor, konyhai gép, jegyzet vagy kaja? Add el a folyosón, vagy szerezd be olcsón közvetlenül a szomszéd szobából.
+            Feleslegessé vált bútor, konyhai gép, jegyzet vagy kaja a VUK-ban? Add el a folyosón, vagy szerezd be olcsón közvetlenül a szomszéd szobából.
           </p>
         </section>
 

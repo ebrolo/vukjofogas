@@ -38,7 +38,7 @@ export function Footer() {
             . Minden jog fenntartva.
           </span>
           <span className="hidden sm:inline text-zinc-300 dark:text-zinc-700">|</span>
-          <span>Koli Piac • Belső kollégiumi piactér</span>
+          <span>VUK Jófogás • Belső kollégiumi piactér</span>
         </div>
       </div>
     </footer>

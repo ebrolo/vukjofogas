@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Koli Piac – Kollégiumi Apróhirdetések',
-  description: 'Add el és vedd meg a cuccaidat a koliban. Nulla regisztráció, közvetlen szobaszám.',
+  title: 'VUK Jófogás – Kollégiumi Apróhirdetések',
+  description: 'Add el és vedd meg a cuccaidat a VUK-ban. Nulla regisztráció, közvetlen szobaszám.',
 };
 
 export default function RootLayout({

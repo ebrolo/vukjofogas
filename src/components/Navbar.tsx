@@ -21,14 +21,14 @@ export function Navbar({ onOpenCreateModal, isLive, totalListings }: NavbarProps
           <div>
             <div className="flex items-center gap-2">
               <span className="font-extrabold text-lg sm:text-xl tracking-tight text-zinc-900 dark:text-zinc-100">
-                Koli Piac
+                VUK Jófogás
               </span>
               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
                 {totalListings} hirdetés
               </span>
             </div>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 hidden sm:block">
-              Add el és vedd meg a koliban • Nulla regisztráció
+              Add el és vedd meg a VUK-ban • Nulla regisztráció
             </p>
           </div>
         </div>

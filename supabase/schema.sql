@@ -42,3 +42,4 @@ create policy "Bárki módosíthatja a státuszt"
 create policy "Bárki törölheti a hirdetést"
   on public.listings for delete
   using (true);
+

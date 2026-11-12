@@ -1,6 +1,6 @@
-# 🏢 Koli Piac – Kollégiumi Apróhirdető Weboldal
+# 🏢 VUK Jófogás – Kollégiumi Apróhirdető Weboldal
 
-Egy végtelenül egyszerű, letisztult, villámgyors Next.js 16 + React 19 webalkalmazás, amellyel a kollégisták másodpercek alatt adhatnak el és vehetnek meg tárgyakat (bútor, konyhai gépek, tankönyvek, jegyzetek, kaja) regisztráció nélkül, közvetlen szobaszám megjelöléssel.
+Egy végtelenül egyszerű, letisztult, villámgyors Next.js 16 + React 19 webalkalmazás a VUK kollégistáknak.
 
 ---
 
