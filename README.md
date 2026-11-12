@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏢 Koli Piac – Kollégiumi Apróhirdető Weboldal
 
-## Getting Started
+Egy végtelenül egyszerű, letisztult, villámgyors Next.js 16 + React 19 webalkalmazás, amellyel a kollégisták másodpercek alatt adhatnak el és vehetnek meg tárgyakat (bútor, konyhai gépek, tankönyvek, jegyzetek, kaja) regisztráció nélkül, közvetlen szobaszám megjelöléssel.
 
-First, run the development server:
+---
+
+## ⚡ Főbb funkciók
+
+- **Nulla regisztráció / login**: Csak megadod a szobaszámodat, a termék nevét, leírását, árát és kész.
+- **Közvetlen szobaszám jelvény**: Minden kártyán kiemelten látszik a szoba (pl. `312-es szoba`), így a vevő azonnal fel tud ugrani érte.
+- **Kliensoldali képtömörítés (0 tárhely macera)**: A mobilról lőtt fotókat a böngésző automatikusan lekicsinyíti WebP formátumba, így nincs szükség bonyolult külső képtárhelyre.
+- **1 kattintásos "Elkelt" gomb**: Bárki megjelölheti ha elkelt, vagy visszaállíthatja, ha mégsem vitték el.
+- **Élő keresés & szűrés**: Keresés névre, leírásra vagy szobaszámra, külön szűrők: *Elérhető*, *Összes*, *Ingyen elvihető*, *Elkelt*.
+- **Mobilra optimalizált**: Messenger / Discord / Telegram linkről megnyitva is natív app élmény, 0 vízszintes csúszkálás.
+
+---
+
+## 🚀 Gyorsindítás lokálisan
 
 ```bash
+# 1. Függőségek telepítése
+npm install
+
+# 2. Fejlesztői szerver indítása
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **💡 Megjegyzés:** Az alkalmazás azonnal működik **Supabase nélkül is** (ilyenkor a böngésző helyi tárolóját - `localStorage` - használja és előre feltöltött mintaadatokkal indul).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ☁️ Supabase beállítása (Vercel élesítéshez)
 
-## Learn More
+Mivel a Vercel serverless környezetében a fájlrendszer törlődik, az éles megosztáshoz érdemes bekötni egy ingyenes Supabase adatbázist (2 perc):
 
-To learn more about Next.js, take a look at the following resources:
+1. Hozz létre egy ingyenes projektet a [supabase.com](https://supabase.com) oldalon.
+2. Menj a bal oldali menüben az **SQL Editor** fülre.
+3. Másold be és futtasd a `supabase/schema.sql` fájl tartalmát (vagy nyomj rá a *Run* gombra).
+4. Menj a **Project Settings -> API** menüponthoz, és másold ki a:
+   - `Project URL`
+   - `anon public key`
+5. Hozz létre egy `.env.local` fájlt a projekt gyökerében:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
+   ```
+6. Vercelen ugyanezt a két változót add meg a **Settings -> Environment Variables** alatt!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Git és Vercel telepítés
 
-## Deploy on Vercel
+```bash
+# 1. Git commit
+git add .
+git commit -m "feat: Koli Piac v1.0 released"
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 2. Új GitHub repository létrehozása után:
+git remote add origin https://github.com/FELHASZNALONEV/koli-piac.git
+git branch -M main
+git push -u origin main
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ezután a [vercel.com](https://vercel.com)-on válaszd az **Import Project** opciót, add meg a két Supabase környezeti változót, és másodpercek alatt kész az éles, megosztható link!
+
+---
+
+© 2026 [E-Brolo](https://ebrolo.hu/). Minden jog fenntartva.
