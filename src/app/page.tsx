@@ -33,7 +33,7 @@ type SortType = 'newest' | 'price-asc' | 'price-desc';
 export default function HomePage() {
   const [listings, setListings] = useState<Listing[]>(INITIAL_MOCK_LISTINGS);
   const [loading, setLoading] = useState(false);
-  const [isLive, setIsLive] = useState(false);
+  const [isLive, setIsLive] = useState(isSupabaseConfigured);
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState('');
