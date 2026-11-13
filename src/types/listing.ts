@@ -1,7 +1,7 @@
 export interface Listing {
   id: string;
   title: string;
-  price: number; // 0 = Ingyen elvihető
+  price: number; // 0 = Ingyen elvihető, -1 = Megbeszélés alapján
   room: string;
   description: string;
   image_url?: string;

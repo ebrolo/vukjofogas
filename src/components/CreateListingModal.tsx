@@ -14,6 +14,7 @@ interface CreateListingModalProps {
 export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingModalProps) {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
+  const [isNegotiable, setIsNegotiable] = useState(false);
   const [room, setRoom] = useState('');
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -68,7 +69,7 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
       return;
     }
 
-    const parsedPrice = parseInt(price.replace(/\D/g, ''), 10) || 0;
+    const parsedPrice = isNegotiable ? -1 : (parseInt(price.replace(/\D/g, ''), 10) || 0);
 
     try {
       setIsSubmitting(true);
@@ -83,6 +84,7 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
       // Reset state
       setTitle('');
       setPrice('');
+      setIsNegotiable(false);
       setRoom('');
       setDescription('');
       setImageUrl('');
@@ -154,7 +156,7 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
                 <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300">
                   Ár (Ft) <span className="text-red-500">*</span>
                 </label>
-                {numericPrice === 0 && price.length > 0 && (
+                {!isNegotiable && numericPrice === 0 && price.length > 0 && (
                   <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                     Ingyen elvihető!
                   </span>
@@ -163,15 +165,38 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
               <div className="relative">
                 <input
                   type="text"
-                  value={price}
+                  disabled={isNegotiable}
+                  value={isNegotiable ? 'Megbeszélés alapján' : price}
                   onChange={(e) => setPrice(e.target.value)}
                   placeholder="pl. 3500 (0 = ingyen)"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all placeholder:text-zinc-400 pr-10"
+                  className={`w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 dark:border-zinc-700 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100 transition-all placeholder:text-zinc-400 pr-10 ${
+                    isNegotiable
+                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 font-medium cursor-not-allowed italic'
+                      : 'bg-zinc-50 dark:bg-zinc-800/50 text-zinc-900 dark:text-zinc-100'
+                  }`}
                 />
-                <span className="absolute right-3.5 top-2.5 text-xs font-medium text-zinc-400">
-                  Ft
-                </span>
+                {!isNegotiable && (
+                  <span className="absolute right-3.5 top-2.5 text-xs font-medium text-zinc-400">
+                    Ft
+                  </span>
+                )}
               </div>
+
+              {/* Megbeszélés alapján checkbox */}
+              <label className="flex items-center gap-2 mt-2 cursor-pointer select-none group">
+                <input
+                  type="checkbox"
+                  checked={isNegotiable}
+                  onChange={(e) => {
+                    setIsNegotiable(e.target.checked);
+                    if (e.target.checked) setPrice('');
+                  }}
+                  className="w-4 h-4 rounded border-zinc-300 text-zinc-900 dark:text-zinc-100 focus:ring-zinc-900 cursor-pointer"
+                />
+                <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200 transition-colors">
+                  Megbeszélés alapján
+                </span>
+              </label>
             </div>
 
             {/* Szobaszám */}
@@ -243,10 +268,10 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
                     </div>
                     <div className="text-center">
                       <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-                        Kattints ide fotó készítéséhez vagy feltöltéséhez
+                        Fotó kiválasztása galériából vagy új készítése
                       </span>
                       <p className="text-[11px] text-zinc-400 mt-0.5">
-                        Mobilról egyből kamerával is lőhetsz egy képet
+                        Kattintásra választhatsz a galériádból vagy fotózhatsz egyet
                       </p>
                     </div>
                   </>
@@ -255,7 +280,6 @@ export function CreateListingModal({ isOpen, onClose, onSubmit }: CreateListingM
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
-                  capture="environment"
                   className="hidden"
                   onChange={handleFileChange}
                 />

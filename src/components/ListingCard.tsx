@@ -63,6 +63,7 @@ export function ListingCard({ listing, onToggleSold, onDelete, onOpenImage }: Li
     }
   }
 
+  const isNegotiable = listing.price === -1;
   const isFree = listing.price === 0;
 
   return (
@@ -120,7 +121,11 @@ export function ListingCard({ listing, onToggleSold, onDelete, onOpenImage }: Li
           {/* Ár és Szobaszám jelvények */}
           <div className="flex items-center justify-between gap-2 flex-wrap">
             {/* Ár */}
-            {isFree ? (
+            {isNegotiable ? (
+              <span className="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold tracking-tight bg-sky-500/10 text-sky-700 dark:text-sky-400 border border-sky-500/20">
+                Megbeszélés alapján
+              </span>
+            ) : isFree ? (
               <span className="inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-black tracking-wide bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                 INGYENES
               </span>

@@ -111,7 +111,11 @@ export default function HomePage() {
 
     // Sorting
     result.sort((a, b) => {
-      if (sort === 'price-asc') return a.price - b.price;
+      if (sort === 'price-asc') {
+        const pA = a.price === -1 ? 999999999 : a.price;
+        const pB = b.price === -1 ? 999999999 : b.price;
+        return pA - pB;
+      }
       if (sort === 'price-desc') return b.price - a.price;
       // Default: newest first
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
